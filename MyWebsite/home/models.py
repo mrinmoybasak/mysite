@@ -24,15 +24,17 @@ class Product(models.Model):
 			('Others', 'Others'),
 			)
 
+	BUY_SELL= (
+		('Purchase', 'Purchase'),
+		('Redemption', 'Redemption'),
+		('Switch In ', 'Switch In'),
+		('Switch Out ', 'Switch Out'),
+	)
+
 	scheme_name	 = models.CharField(max_length=200, null=True)
 	AMC = models.ManyToManyField(Tag)
 	asset_type = models.CharField(max_length=200, null=True, choices=CATEGORY)
-	folio_No= models.CharField(max_length=200, null=True)
-	investment_date	 = models.DateField(null=True)
-	units = models.FloatField(null=True)
-	purchase_nav = models.IntegerField(null=True)
-	purchase_value = models.IntegerField(null=True)
-	description = models.CharField(max_length=200, null=True, blank=True)
+
 	date_created = models.DateTimeField(auto_now_add=True, null=True)
 
 
@@ -48,12 +50,31 @@ class Order(models.Model):
 		('Accept', 'Accept'),
 		('Rejected', 'Rejected'),
 	)
+	CATEGORY = (
+		('Equity', 'Equity'),
+		('Debt', 'Debt'),
+		('Liquid ', 'Liquid'),
+		('Others', 'Others'),
+	)
+	BUY_SELL = (
+		('Purchase', 'Purchase'),
+		('Redemption', 'Redemption'),
+		('Switch In ', 'Switch In'),
+		('Switch Out ', 'Switch Out'),
+
+	)
 
 	customer = models.ForeignKey(Customer, null=True, on_delete=models.SET_NULL)
 	product = models.ForeignKey(Product, null=True, on_delete=models.SET_NULL)
 	date_created = models.DateTimeField(auto_now_add=True, null=True)
+	purchase_redeem = models.CharField(max_length=200, null=True, choices=BUY_SELL)
+	folio_No = models.CharField(max_length=200, null=True)
+	investment_date = models.DateField(null=True)
+	units = models.FloatField(null=True)
+	purchase_nav = models.IntegerField(null=True)
+	purchase_value = models.IntegerField(null=True)
+	description = models.CharField(max_length=200, null=True, blank=True)
 	status = models.CharField(max_length=200, null=True, choices=STATUS)
 
-
-
-
+	def __str__(self):
+		return self.product.scheme_name
