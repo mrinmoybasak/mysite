@@ -32,9 +32,16 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/">Home</a>
         </li>
+        {%if request.user.is_staff %}
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{% url 'dashboard' %}">Accounts</a>
         </li>
+         {% else %}
+        <li class="nav-item">
+        <a class="nav-link" href="{% url 'account' %}">Profile</a>
+      </li>
+
+        {% endif %}
 
         <li class="nav-item">
           <a class="nav-link" href="/about">About Us</a>
@@ -44,7 +51,9 @@
             Services
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            {%if request.user.is_staff %}
             <li><a class="dropdown-item" href="{% url 'products' %}">Services Item</a></li>
+            {% endif %}
             <li><a class="dropdown-item" href="#">Another action</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>

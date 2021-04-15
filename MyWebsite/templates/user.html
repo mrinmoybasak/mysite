@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock title %}
+
+{% block body %}
+{%  include 'status2.html' %}
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					<th>Product</th>
+					<th>Category</th>
+					<th>Type of Transaction </th>
+					<th>Folio No</th>
+					<th>Investment Date</th>
+					<th>Units</th>
+					<th>Nav</th>
+					<th>Investment Amount</th>
+
+				</tr>
+
+				{% for order in orders %}
+
+				<tr>
+					<td>{{order.product}}</td>
+					<td>{{order.product.asset_type}}</td>
+					<td>{{order.purchase_redeem}}</td>
+					<td>{{order.folio_No}}</td>
+					<td>{{order.investment_date}}</td>
+					<td>{{order.units}}</td>
+					<td>{{order.purchase_nav}}</td>
+					<td>{{order.purchase_value}}</td>
+
+
+				</tr>
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+</div>
+
+{% endblock body %}
