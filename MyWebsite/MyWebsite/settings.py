@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '*@s_bzo4z%79e$$-t5_1t_ao!39geup*9g1fp1$dn771dl0v(@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['mrinmoy-crm.herokuapp.com','127.0.0.1']
 
 
 # Application definition
@@ -80,14 +80,21 @@ WSGI_APPLICATION = 'MyWebsite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'DEMO_TEST',
-        'USER': 'postgres',
-        'PASSWORD':'mrinmoy#2021',
-        'HOST':'localhost',
-        'PORT':'5432'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'demo_1',
+#         'USER': 'mrinmoy',
+#         'PASSWORD':'mrinmoy#2021',
+#         'HOST':'database-1.cdtxzyxsxzmf.us-east-2.rds.amazonaws.com',
+#         'PORT':'5432'
+#     }
+# }
 
 
 # Password validation
